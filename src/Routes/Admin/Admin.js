@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import SimpleCard from '../../Components/SimpleCard/SimpleCard';
 import styled from 'styled-components';
 import List from '../../Components/List/List';
-import Dialogbox from '../../Components/DialogBox/DialogBox';
 
 const INITIAL_STATE=[
     {

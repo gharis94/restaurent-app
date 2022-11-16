@@ -46,9 +46,14 @@ export default function InteractiveList() {
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText
-                    primary="Single-line item"
-                    secondary={secondary ? 'Secondary text' : null}
-                  />
+                    primary="Name"
+                    />
+                    <ListItemText
+                    primary="Category"
+                    />
+                    <ListItemText
+                    primary="$ 0.00"
+                    />
                 </ListItem>,
               
             </List>

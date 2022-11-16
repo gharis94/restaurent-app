@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField'
+import { Input } from '@mui/material';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -107,36 +108,26 @@ export default function CustomizedDialogs() {
                 <TextField
                   
                   id="outlined-required"
-                  label="Name"
+                  label="Dish Name"
                   type='text'
                   name='name'
                   onChange={(e)=>handleChange(e)}
-                  value={state.name}
+                  value='name'
                 />
                 <TextField
                   required
                   id="outlined-required"
-                  label="Email"
-                  name='email'
+                  label="Category"
+                  name='category'
                   onChange={(e)=>handleChange(e)}
-                  value={state.email}
+                  value='email'
                 />
-                <TextField
-                  required
-                  id="outlined-required"
-                  label="Contact"
-                  name='contact'
-                  onChange={(e)=>handleChange(e)}
-                  value={state.contact}
+                <Input
+                  label="File"
+                  type='file'
+                  
                 />
-                <TextField
-                  required
-                  id="outlined-required"
-                  label="Info"
-                  name='info'
-                  onChange={(e)=>handleChange(e)}
-                  value={state.info}
-                />
+                
               </FormControl>
               
             </Box>
