@@ -20,14 +20,12 @@ export default function CardComponent({item}) {
         <Typography gutterBottom variant="h5" component="div">
           {item.name && item.name.toUpperCase()}
         </Typography>
-        {/* <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography> */}
+        <Typography variant="body2" color="text.secondary">
+          {`PKR ${item.price}/=`}
+        </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="small">Add</Button> 
       </CardActions>
     </Card>
   );

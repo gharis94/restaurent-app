@@ -8,12 +8,14 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField'
 import { Input } from '@mui/material';
-
+import MenuItem from '@mui/material/MenuItem';
+import {uploadFile} from '../../utils/firebas'
+import { useDispatch } from 'react-redux';
+import { uploadMenu } from '../../redux/menuSlice/uploadMenuSlice';
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -52,9 +54,32 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
+const INITIAL_STATE={
+    name:'',
+    price:0,
+    category:'',
+    imageName:'',
+    imageUrl:''
+}
+const categories=[
+    {   label:'Break Fast',
+        value:'breakfast'},
+    {   label:'Main course',
+        value:'main'},
+    {   label:'Desert',
+        value:'desert'},
+    {   label:'Drink',
+        value:'drink'}
+]
 export default function CustomizedDialogs() {
   const [open, setOpen] = React.useState(false);
-  const [state,setState] =React.useState()
+  const [state,setState] =React.useState(INITIAL_STATE);
+  const {name,category,price} = state;
+  const [uploaded,setUploaded] = React.useState(false)
+  const [file,setFile] = React.useState(null);
+  
+  const dispatch=useDispatch();
+  
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -63,12 +88,29 @@ export default function CustomizedDialogs() {
   };
 
   const handleSubmit=(e)=>{
-    console.log('a')
+    e.preventDefault();
+    console.log('dispatch',state)
+    dispatch(uploadMenu(state));
+    handleClose();
   }
   const handleChange=(e)=>{
-    console.log('f')
+    const {name,value} = e.target;
+    setState(prev=>({...prev,[name]:value}));
+  }
+  const handleImage =(e)=>{
+    setFile(e.target.files[0]);
+    setState(prev=>({...prev,imageName:e.target.files[0].name}))
   }
 
+  React.useEffect(()=>{
+    if(file){
+        const uploadImage = async () => {
+            await uploadFile(file, setState, setUploaded)
+        }
+        uploadImage();
+    }
+    
+  },[file])
   return (
     <div>
       <Button variant="contained" onClick={handleClickOpen}>
@@ -83,26 +125,13 @@ export default function CustomizedDialogs() {
           Modal title
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          {/* <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
-          </Typography>
-          <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-          </Typography>
-          <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-            ullamcorper nulla non metus auctor fringilla.
-          </Typography> */}
+          
           <Box
               component="form"
               sx={{'& .MuiTextField-root': { m: 1, width: '25ch' },}}
               noValidate
               autoComplete="off"
-              onSubmit={(e)=>handleSubmit(e)}
+              
             >
               <FormControl>
                 <TextField
@@ -112,20 +141,30 @@ export default function CustomizedDialogs() {
                   type='text'
                   name='name'
                   onChange={(e)=>handleChange(e)}
-                  value='name'
+                  value={name}
                 />
                 <TextField
-                  required
+                  select
                   id="outlined-required"
                   label="Category"
                   name='category'
                   onChange={(e)=>handleChange(e)}
-                  value='email'
+                  value={category}
+                >
+                    {categories.map(option=>(<MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>))}
+                </TextField>
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Price"
+                  name='price'
+                  onChange={(e)=>handleChange(e)}
+                  value={price}
                 />
                 <Input
                   label="File"
                   type='file'
-                  
+                  onChange={(e)=>handleImage(e)}
                 />
                 
               </FormControl>
@@ -133,8 +172,8 @@ export default function CustomizedDialogs() {
             </Box>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Save changes
+          <Button type='submit' autoFocus disabled={!uploaded} onClick={(e)=>handleSubmit(e)}>
+            Upload 
           </Button>
         </DialogActions>
       </BootstrapDialog>

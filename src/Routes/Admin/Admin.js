@@ -24,6 +24,7 @@ const INITIAL_STATE=[
 
 const Admin = () => {
     const [count,setCount] = useState(0);
+    
   return (
     <Main>
         <h2>Admin Dashboard</h2>

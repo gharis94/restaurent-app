@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import DATA from '../../asset/data'
 import CardComponent from '../CardComponent/CardComponent';
 import styled from 'styled-components'
+import { useSelector } from 'react-redux';
+import { getMenu } from '../../redux/menuSlice/menuSelector';
 
 const MenuComponent = () => {
+    const menu = useSelector(getMenu);
 
+    
   return (
     <MainContainer>
         {
-            DATA.map(item=>(
+            menu.length>0 && menu.map(item=>(
                 <CardComponent key={item.id} item={item}/>
             ))
         }

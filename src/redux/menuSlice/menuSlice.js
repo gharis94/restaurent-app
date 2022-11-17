@@ -2,17 +2,20 @@ import {fetchData} from '../../utils/firebas'
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchMenu= createAsyncThunk('menu/fetchMenu',async()=>{
-     await fetchData()
+     const data = await fetchData();
+     return data;
 })
 
-export const menuSlice = createSlice({
+
+const initialState = {
+    menu: [],
+    isLoading: false,
+    error: ''
+}
+const menuSlice = createSlice({
     name:'menu',
-    initialState:{
-        menu:[],
-        isLoading:false,
-        error:''
-    },
-    extraReducer:(builder)=>{
+    initialState,
+    extraReducers:(builder)=>{
         builder.addCase(fetchMenu.pending,state=>{
             state.isLoading = true
         })
@@ -27,4 +30,6 @@ export const menuSlice = createSlice({
             state.error=action.error.message
         })
     }
-})
+});
+
+export default menuSlice.reducer;

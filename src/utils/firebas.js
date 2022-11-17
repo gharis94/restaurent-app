@@ -28,22 +28,30 @@ const storage = getStorage(app);
 //uploading data to firestore
 
 export const uploadData = async(data)=>{
-    const collectionRef = collection(db,'menu-items');
-    const docRef = await addDoc(collectionRef,data)
-
+    const collectionRef = collection(db,'menu');
+    try{
+        await addDoc(collectionRef, data)
+        //console.log(docRef)
+        return 'succeesful';
+    }catch(error){
+        return error.message
+    }
+    
 }
 
 //getting data from firestore
 
 export const fetchData =async()=>{
-    const collectionRef =collection(db,'mwnu-items');
+    const collectionRef =collection(db,'menu');
     const querySnapshot = await getDocs(collectionRef);
+    querySnapshot.docs.forEach(x=>console.log(x.data()))
+
 
     const data = querySnapshot.docs.reduce((acc,cur)=>{
-        acc =[...acc,{...cur,id:doc.id}]
+        acc =[...acc,{...cur.data(),id:cur.id}]
         return acc
     },[])
-
+    console.log(data)
     return data;
 }
 
@@ -52,5 +60,27 @@ export const uploadFile =async(file,setFn,progressFn)=>{
     const storageRef = ref(storage,`menu-images/${file.name}`)
     const upload = uploadBytesResumable(storageRef,file)
 
-    
+    const  unsubscribe = upload.on('state_changed',(snapshot) => {
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log(`Upload Progress ${progress}%`)
+
+            switch (snapshot.state) {
+                case 'paused':
+                    console.log('paused')
+                    break;
+                case 'running':
+                    console.log('upload is running')
+                    break;
+                default:
+                    break
+            }},(error)=>{
+        console.log(error)
+    },async()=>{
+        const rsp = await getDownloadURL(upload.snapshot.ref);
+        
+        setFn(prev=>({...prev,imageUrl:rsp}));
+        progressFn(true)
+
+        return unsubscribe;
+    })    
 }
