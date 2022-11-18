@@ -44,14 +44,12 @@ export const uploadData = async(data)=>{
 export const fetchData =async()=>{
     const collectionRef =collection(db,'menu');
     const querySnapshot = await getDocs(collectionRef);
-    querySnapshot.docs.forEach(x=>console.log(x.data()))
 
 
     const data = querySnapshot.docs.reduce((acc,cur)=>{
         acc =[...acc,{...cur.data(),id:cur.id}]
         return acc
     },[])
-    console.log(data)
     return data;
 }
 
