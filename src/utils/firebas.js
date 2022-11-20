@@ -27,8 +27,8 @@ const storage = getStorage(app);
 
 //uploading data to firestore
 
-export const uploadData = async(data)=>{
-    const collectionRef = collection(db,'menu');
+export const uploadData = async(data,type)=>{
+    const collectionRef = collection(db,type);
     try{
         await addDoc(collectionRef, data)
         //console.log(docRef)
@@ -41,8 +41,8 @@ export const uploadData = async(data)=>{
 
 //getting data from firestore
 
-export const fetchData =async()=>{
-    const collectionRef =collection(db,'menu');
+export const fetchData =async(type)=>{
+    const collectionRef =collection(db,type);
     const querySnapshot = await getDocs(collectionRef);
 
 

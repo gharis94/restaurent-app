@@ -4,7 +4,7 @@ import { uploadData } from '../../utils/firebas';
 
 export const uploadMenu = createAsyncThunk('menuUpload/upload',async(data)=>{
     console.log('thunk',data)
-    const rsp = await uploadData(data);
+    const rsp = await uploadData(data,'menu');
  return rsp;  
 })
 

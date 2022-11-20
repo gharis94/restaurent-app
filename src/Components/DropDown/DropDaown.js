@@ -4,8 +4,6 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
 import CartIcon from '../CartIcon/CartIcon';
-import { useDispatch } from 'react-redux';
-import {changeCartState} from '../../redux/cartSlice/cartSlice'
 
 export default function DropDown() {
 
@@ -21,9 +19,10 @@ export default function DropDown() {
 
   const navigate = useNavigate();
   const navigateTo =()=>{
+    handleClose()
     navigate('checkout')
   }
-  return (
+  return ( 
     <div>
       <Button
         id="basic-button"

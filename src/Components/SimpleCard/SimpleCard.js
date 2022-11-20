@@ -15,15 +15,13 @@ const bull = (
   </Box>
 );
 
-export default function SimpleCard({item}) {
+export default function SimpleCard({item,set}) {
     const {name,id} = item;
   return (
-    <Card sx={{ minWidth: 200,margin:'10px' }}>
-      <CardContent>
+    <Card sx={{ minWidth: 200,margin:'10px',cursor:'pointer'}} onClick={()=>set(id)}>
+      <CardContent >
         <CardActions sx = {{justifyContent: 'center'}}
-        onClick = {
-            () => console.log('click')
-        } >
+         >
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {name}
         </Typography>
