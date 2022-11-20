@@ -6,7 +6,7 @@ import Home from './Routes/Home/Home';
 import Admin from './Routes/Admin/Admin';
 import { useDispatch } from 'react-redux';
 import { fetchMenu } from './redux/menuSlice/menuSlice';
-
+import CheckOut from './Routes/CheckOut/CheckOut';
 
 function App() {
   const dispatch=useDispatch();
@@ -19,6 +19,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Nav/>}>
           <Route index element={<Home/>}/>
+          <Route path='checkout' element={<CheckOut/>}/>
         </Route>
         <Route path='/admin' element={<Admin/>}/>
       </Routes>
