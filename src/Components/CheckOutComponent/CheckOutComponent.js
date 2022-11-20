@@ -8,14 +8,17 @@ import Typography from '@mui/material/Typography';
 import CardMedia from '@mui/material/CardMedia'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import { useSelector } from 'react-redux';
 import { cartItemSelector } from '../../redux/cartSlice/cartSelector';
 import {addItemToCart,decrementFromCart} from '../../redux/cartSlice/cartSlice'
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
+import PaymentDialog from '../PaymentDialog/PaymentDialog';
+import { totalAmount } from '../../redux/cartSlice/cartSelector';
 
 export const CardI=({item})=>{ 
     const {name, imageUrl, price, quantity} =item;
     const dispatch=useDispatch();
+
+
     const handleIncrement =()=>{
         dispatch(addItemToCart(item))
     }
@@ -54,7 +57,10 @@ export const CardI=({item})=>{
 
 export default function CheckOutCard() {
     const cartItems = useSelector(cartItemSelector);
-    console.log(cartItems)
+    const [isOpen,setIsOpen] = React.useState(false);
+    const amount = useSelector(totalAmount);
+    console.log(amount)
+
     return (
     <Box sx={{ minWidth: 700, maxWidth:520 }}>
         {
@@ -65,7 +71,9 @@ export default function CheckOutCard() {
                         <Card key={item.id}  variant="outlined">{<CardI item={item}/>}
                         </Card>))
                 }
-                <Button size="small">Pay Now</Button>
+                <h4>{`Total Payable ${amount} PKR`}</h4>
+                <Button size="small" onClick={()=>setIsOpen(!isOpen)}>Pay Now</Button>
+                <PaymentDialog open={isOpen} setOpen={setIsOpen}/>       
            </>):
            <h4>Empty Bucket</h4>
             

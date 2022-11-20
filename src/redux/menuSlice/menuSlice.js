@@ -2,7 +2,7 @@ import {fetchData} from '../../utils/firebas'
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchMenu= createAsyncThunk('menu/fetchMenu',async()=>{
-     const data = await fetchData();
+     const data = await fetchData('menu');
      return data;
 })
 

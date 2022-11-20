@@ -1,45 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import SimpleCard from '../../Components/SimpleCard/SimpleCard';
 import styled from 'styled-components';
 import List from '../../Components/List/List';
+import PendingOrder from '../../Components/PendingOrder/PendingOrder';
+import { useDispatch } from 'react-redux';
+import { fetchOrders} from '../../redux/orderSlice/orderSlice';
 
 const INITIAL_STATE=[
     {
-        id:11,
+        id:0,
         name:"Menu"
     },
     {
-        id:22,
+        id:1,
         name:'Admin Settings'
     },
     {
-        id:33,
+        id:2,
         name:'sales'
     },
     {
-        id:44,
+        id:3,
         name:'pending orders'
     }
 ]
 
 const Admin = () => {
     const [count,setCount] = useState(0);
-    
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(fetchOrders());        
+    },[])
   return (
     <Main>
         <h2>Admin Dashboard</h2>
         <Container>
             {
-            INITIAL_STATE.map(state=>(
-                <SimpleCard key={state.id} item={state}/>
+            INITIAL_STATE.map((state)=>(
+                <SimpleCard key={state.id} item={state} set={setCount}/>
             ))
         }
         </Container>
         <ListContainer>
             {
-              count === 0? (<>
-                <List/>
-              </>):null   
+              count === 0? (<List/>): 
+              count ===1? (<h4>Admin Setting</h4>):
+              count === 2? (<h4>Sales</h4>):
+              count ===3? (<PendingOrder/>):null   
             }
         </ListContainer>
     </Main>
