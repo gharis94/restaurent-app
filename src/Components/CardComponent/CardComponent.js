@@ -5,9 +5,14 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import {useDispatch} from 'react-redux';
+import {addItemToCart} from '../../redux/cartSlice/cartSlice'
 
 export default function CardComponent({item}) {
-    
+    const dispatch = useDispatch();
+    const handleAdd =()=>{
+      dispatch(addItemToCart(item));
+    }
   return (
     <Card sx={{ maxWidth: 345, margin:'10px' }}>
       <CardMedia
@@ -25,7 +30,7 @@ export default function CardComponent({item}) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Add</Button> 
+        <Button size="small" onClick={()=>handleAdd()}>Add</Button> 
       </CardActions>
     </Card>
   );

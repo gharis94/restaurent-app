@@ -1,19 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react'
 import styled from 'styled-components';
 import {ReactComponent as Bag} from '../../asset/shopping-bag.svg';
-
+import {useSelector} from 'react-redux'
+import {totalCount} from '../../redux/cartSlice/cartSelector'
 
 const CartIcon = () => {
-
-    
-    const handleClick=()=>{
-      console.log('hello')
-    }
+    const count = useSelector(totalCount);
     
   return (
-    <Container onClick={()=>handleClick}>
+    <Container>
         <ShoppingIcon/>
-        <Count>0</Count>
+        <Count>{count}</Count>
     </Container>
   )
 }

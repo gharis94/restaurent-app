@@ -1,13 +1,15 @@
-import React from 'react'
+import React,{useState} from 'react';
 import { Outlet } from 'react-router-dom'
-import Header from '../../Components/Header/Header'
+import CartIcon from '../../Components/CartIcon/CartIcon'
 import styled from 'styled-components'
+import DropDown from '../../Components/DropDown/DropDaown';
 
 const Nav = () => {
+
   return (
     <>
       <NavTop>
-        <Header/>
+        <DropDown/>
       </NavTop>
         
         <Outlet/>
