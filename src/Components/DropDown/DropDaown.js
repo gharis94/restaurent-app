@@ -43,8 +43,8 @@ export default function DropDown() {
         }}
       >
         {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+        <MenuItem onClick={handleClose}>My account</MenuItem> */}
+        <MenuItem onClick={()=>navigate('/admin')}>Admin</MenuItem>
         <Button onClick={()=>navigateTo()}>Check Out</Button>
       </Menu>
     </div>
