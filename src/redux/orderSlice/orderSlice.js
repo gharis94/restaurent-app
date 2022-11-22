@@ -1,5 +1,5 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
-import {uploadData,fetchData} from '../../utils/firebas';
+import {uploadData,fetchData,updateData} from '../../utils/firebas';
 
 export const addToOrders = createAsyncThunk('adddToOrders/order',async(dataObj)=>{
     console.log('start')
@@ -20,6 +20,11 @@ export const addToOrders = createAsyncThunk('adddToOrders/order',async(dataObj)=
 export const fetchOrders = createAsyncThunk('fetchOrders/order',async()=>{
     const rsp = await fetchData('orders');
     return rsp
+})
+
+export const updateOrder = createAsyncThunk('updateOrder.order',async(dataObj)=>{
+    const rsp = await updateData(dataObj);
+    return rsp;
 })
 
 const initialState={
@@ -51,6 +56,17 @@ const orderSlice = createSlice({
         })
         builder.addCase(fetchOrders.rejected,(state,action)=>{
             state.status = 'data fetching failed';
+            state.error = action.payload;
+        })
+        builder.addCase(updateOrder.pending,(state)=>{
+            state.status = 'data updating in progress';
+        })
+        builder.addCase(updateOrder.fulfilled,(state,action)=>{
+            state.status = 'data updated';
+            state.orders=action.payload;
+        })
+        builder.addCase(updateOrder.rejected,(state,action)=>{
+            state.status = 'data updating failed';
             state.error = action.payload;
         })
     }

@@ -5,6 +5,7 @@ import List from '../../Components/List/List';
 import PendingOrder from '../../Components/PendingOrder/PendingOrder';
 import { useDispatch } from 'react-redux';
 import { fetchOrders} from '../../redux/orderSlice/orderSlice';
+import SaleComponent from '../../Components/SaleComponent/SaleComponent';
 
 const INITIAL_STATE=[
     {
@@ -46,7 +47,7 @@ const Admin = () => {
             {
               count === 0? (<List/>): 
               count ===1? (<h4>Admin Setting</h4>):
-              count === 2? (<h4>Sales</h4>):
+              count === 2? (<SaleComponent/>):
               count ===3? (<PendingOrder/>):null   
             }
         </ListContainer>
