@@ -6,6 +6,8 @@ import PendingOrder from '../../Components/PendingOrder/PendingOrder';
 import { useDispatch } from 'react-redux';
 import { fetchOrders} from '../../redux/orderSlice/orderSlice';
 import SaleComponent from '../../Components/SaleComponent/SaleComponent';
+import AuthComponent from '../../Components/AuthComponent/AuthComponent';
+import {signIn} from '../../utils/firebas'; 
 
 const INITIAL_STATE=[
     {
@@ -26,15 +28,33 @@ const INITIAL_STATE=[
     }
 ]
 
+const initialState = {
+    email: '',
+    password: ''
+}
 const Admin = () => {
     const [count,setCount] = useState(0);
     const dispatch = useDispatch();
+    const [admin,setAdmin] = useState(initialState);
+    const {email,password}=admin;
+    const [isLogIn,setIsLogIn] = useState(false);
 
     useEffect(()=>{
         dispatch(fetchOrders());        
     },[])
+
+    const handleSubmit=async(e)=>{
+        e.preventDefault();
+        const rsp = await signIn(email,password);
+        
+        if(rsp.user.uid){
+            setIsLogIn(true)
+        }
+        return rsp;
+    }
   return (
     <Main>
+        <AuthComponent log={isLogIn} set={setAdmin} state={admin} handleSubmit={handleSubmit}/>
         <h2>Admin Dashboard</h2>
         <Container>
             {

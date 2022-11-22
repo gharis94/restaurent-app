@@ -8,3 +8,5 @@ export const orderSaleSelector = state => state.order.orders.reduce((acc,cur)=>{
 },0)
 
 export const orderCompleted = state => state.order.orders.filter(item=>item.status !== false).length;
+
+export const orderInQue = state => state.order.orders.filter(item=>item.status === false).length;
