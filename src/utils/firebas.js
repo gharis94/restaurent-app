@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import {initializeApp} from "firebase/app";
-import { addDoc, collection, getFirestore,getDocs, doc} from 'firebase/firestore';
+import { addDoc, collection, getFirestore,getDocs, doc,updateDoc} from 'firebase/firestore';
 import {getStorage,ref,getDownloadURL,uploadBytesResumable,deleteObject} from 'firebase/storage'
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -81,4 +81,14 @@ export const uploadFile =async(file,setFn,progressFn)=>{
 
         return unsubscribe;
     })    
+}
+
+// updating firestore data 
+
+export const updateData = async(data)=>{
+    const docRef = doc(db,'orders',data.id);
+    await updateDoc(docRef,{
+        ...data,
+        status:'fullfilled'
+    })
 }

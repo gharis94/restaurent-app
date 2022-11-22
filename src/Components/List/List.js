@@ -22,7 +22,7 @@ const Demo = styled('div')(({ theme }) => ({
 export default function InteractiveList() {
  
   const menu = useSelector(getMenu);
-  console.log(menu)
+
   return (
     <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
         <Grid item xs={12} md={6}>
