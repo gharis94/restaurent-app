@@ -10,13 +10,16 @@ const MenuComponent = () => {
 
     
   return (
-    <MainContainer>
+    
+        <MainContainer>
         {
             menu.length>0 && menu.map(item=>(
                 <CardComponent key={item.id} item={item}/>
             ))
         }
     </MainContainer>
+    
+    
   )
 }
 
@@ -25,6 +28,8 @@ export default MenuComponent
 
 const MainContainer = styled.div`
     display:flex;
+    justify-content: center;
     flex-wrap:wrap;
     padding:10px;
+    
 `

@@ -14,12 +14,14 @@ export default function CardComponent({item}) {
       dispatch(addItemToCart(item));
     }
   return (
-    <Card sx={{ maxWidth: 345, margin:'10px' }}>
+    <Card sx={{ maxWidth: 345, margin:'10px',objectFit:'contain' }}>
       <CardMedia
         component="img"
         height="140"
+        width='140'
         image={item.imageUrl? item.imageUrl:null}
         alt="green iguana"
+        object-fit='contain'
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -29,8 +31,8 @@ export default function CardComponent({item}) {
           {`PKR ${item.price}/=`}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small" onClick={()=>handleAdd()}>Add</Button> 
+      <CardActions sx={{display:'flex',justifyContent:'center'}}>
+        <Button size="medium" onClick={()=>handleAdd()}>Add</Button> 
       </CardActions>
     </Card>
   );

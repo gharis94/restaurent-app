@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import SimpleCard from '../../Components/SimpleCard/SimpleCard';
+import DashboardCard from '../../Components/DashboardCard/DashboardCard';
 import styled from 'styled-components';
 import List from '../../Components/List/List';
 import PendingOrder from '../../Components/PendingOrder/PendingOrder';
@@ -8,6 +8,7 @@ import { fetchOrders} from '../../redux/orderSlice/orderSlice';
 import SaleComponent from '../../Components/SaleComponent/SaleComponent';
 import AuthComponent from '../../Components/AuthComponent/AuthComponent';
 import {signIn} from '../../utils/firebas'; 
+import AdminSettingComponent from '../../Components/AdminSettingComponent/AdminSettingComponent';
 
 const INITIAL_STATE=[
     {
@@ -53,25 +54,25 @@ const Admin = () => {
         return rsp;
     }
   return (
-    <Main>
+    <div>
         <AuthComponent log={isLogIn} set={setAdmin} state={admin} handleSubmit={handleSubmit}/>
-        <h2>Admin Dashboard</h2>
+        <h2 className='mt-10 text-2xl font-semibold'>Admin Dashboard</h2>
         <Container>
             {
             INITIAL_STATE.map((state)=>(
-                <SimpleCard key={state.id} item={state} set={setCount}/>
+                <DashboardCard key={state.id} count={count} item={state} setC={setCount}/>
             ))
         }
         </Container>
         <ListContainer>
             {
               count === 0? (<List/>): 
-              count ===1? (<h4>Admin Setting</h4>):
+              count ===1? (<AdminSettingComponent/>):
               count === 2? (<SaleComponent/>):
               count ===3? (<PendingOrder/>):null   
             }
         </ListContainer>
-    </Main>
+    </div>
   )
 }
 
