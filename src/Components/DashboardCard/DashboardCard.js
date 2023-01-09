@@ -3,9 +3,9 @@ import  React from 'react';
 const DashboardCard =({item,setC,count})=>{
     //const {name,id} = item;
     return (
-    <div className='p-4  '>
+    <div className = 'p-4 w-full md:w-[14rem] ' >
       <div  
-          className='relative mx-5 w-[8rem] h-[5rem] bg-slate-500 flex flex-col justify-center items-center rounded-xl drop-shadow-lg p-2 cursor-pointer'
+          className = 'relative h-[5rem] mx-5 bg-slate-500 flex flex-col justify-center items-center rounded-xl drop-shadow-lg p-2 cursor-pointer'
           onClick={()=>setC(item.id)}>
           <p className='text-white'>{item.name.toUpperCase()}</p>
           <>

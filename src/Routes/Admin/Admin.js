@@ -57,13 +57,13 @@ const Admin = () => {
     <div>
         <AuthComponent log={isLogIn} set={setAdmin} state={admin} handleSubmit={handleSubmit}/>
         <h2 className='mt-10 text-2xl font-semibold'>Admin Dashboard</h2>
-        <Container>
+        <div className='flex md:flex-row w-full flex-col justify-center items-center'>
             {
             INITIAL_STATE.map((state)=>(
                 <DashboardCard key={state.id} count={count} item={state} setC={setCount}/>
             ))
         }
-        </Container>
+        </div>
         <ListContainer>
             {
               count === 0? (<List/>): 

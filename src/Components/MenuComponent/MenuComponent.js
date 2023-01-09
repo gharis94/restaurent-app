@@ -1,35 +1,34 @@
 import React, { useEffect } from 'react';
-import DATA from '../../asset/data'
 import CardComponent from '../CardComponent/CardComponent';
-import styled from 'styled-components'
+
 import { useSelector } from 'react-redux';
-import { getMenu } from '../../redux/menuSlice/menuSelector';
+import { getCategory, getMenu } from '../../redux/menuSlice/menuSelector';
 
 const MenuComponent = () => {
     const menu = useSelector(getMenu);
-
+    const category = useSelector(getCategory);
     
+  
   return (
     
-        <MainContainer>
+        <div className='flex md:flex-row flex-wrap flex-col  justify-center items-center gap-4  my-10'>
         {
-            menu.length>0 && menu.map(item=>(
+            menu.length>0 && menu.filter(item=>{
+                if(category === 'all'){
+                    return item
+                }else if(item.category === category){
+                    return true
+                }else{
+                    return false
+                }
+            }).map(item=>(
                 <CardComponent key={item.id} item={item}/>
             ))
         }
-    </MainContainer>
-    
-    
+    </div>
   )
 }
 
-export default MenuComponent
+export default MenuComponent;
 
 
-const MainContainer = styled.div`
-    display:flex;
-    justify-content: center;
-    flex-wrap:wrap;
-    padding:10px;
-    
-`
