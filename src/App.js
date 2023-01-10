@@ -15,7 +15,7 @@ function App() {
 
   }, [])
   return (
-    <div className="App">
+    <div className="h-screen">
       <Routes>
         <Route path='/' element={<Nav/>}>
           <Route index element={<Home/>}/>

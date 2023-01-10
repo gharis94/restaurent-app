@@ -69,7 +69,11 @@ const categories=[
     {   label:'Desert',
         value:'desert'},
     {   label:'Drink',
-        value:'drink'}
+        value:'drink'},
+        {label:'Lunch',
+        value:'lunch'},
+        {label:"Dinner",
+        value:'dinner'}
 ]
 export default function CustomizedDialogs() {
   const [open, setOpen] = React.useState(false);
@@ -114,7 +118,7 @@ export default function CustomizedDialogs() {
   return (
     <div>
       <Button variant="contained" onClick={handleClickOpen}>
-        Add Item
+        Add Item to menu
       </Button>
       <BootstrapDialog
         onClose={handleClose}

@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import {initializeApp} from "firebase/app";
-import { addDoc, collection, getFirestore,getDocs, doc,updateDoc} from 'firebase/firestore';
+import { addDoc, collection, getFirestore,getDocs, doc,updateDoc,serverTimestamp} from 'firebase/firestore';
 import {getStorage,ref,getDownloadURL,uploadBytesResumable,deleteObject} from 'firebase/storage'
 import {getAuth,signInWithEmailAndPassword} from 'firebase/auth';
 
@@ -31,7 +31,9 @@ const auth = getAuth(app);
 //uploading data to firestore
 
 export const uploadData = async(data,type)=>{
+    console.log('up',data)
     const collectionRef = collection(db,type);
+
     try{
         await addDoc(collectionRef, data)
         //console.log(docRef)

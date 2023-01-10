@@ -5,11 +5,11 @@ import CourseSelector from '../../Components/CourseSelector/CourseSelector'
 
 const Home = () => {
   return (
-    <>
-      <H2 >Menu</H2>
+    <div className='flex flex-col justify-center items-center'>
+      <h2 className='text-2xl font-semibold'>Menu</h2>
       <CourseSelector/>
       <MenuComponent/>      
-    </>
+    </div>
   )
 }
 
