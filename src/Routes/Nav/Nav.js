@@ -35,7 +35,7 @@ const Nav = () => {
             <NavLink to='/admin'>Admin</NavLink>
         </div>
         
-        <RestaurantMenuIcon onClick={()=>handleClick()} color='secondary' fontSize='large' sx={{padding:'15px', cursor:'pointer'}}/>
+        {/* <RestaurantMenuIcon onClick={()=>handleClick()} color='secondary' fontSize='large' sx={{padding:'15px', cursor:'pointer'}}/> */}
         <DropDown/>
       </div>
         <Outlet/>

@@ -25,9 +25,9 @@ export default function CheckboxList() {
         <p className='basis-1/4 flex justify-center'>Status</p>
       </div>
 
-      <div className='md:w-8/12 w-full flex flex-col bg-slate-200 justify-center items-center border-b-2 border-black last:rounded-b-lg'>
+      <div className='md:w-8/12 w-full flex flex-col bg-slate-200 justify-center items-center mb-6 border-b-2 border-black last:rounded-b-lg'>
         {orders?.length>0 && orders?.filter(item=>item.status===false).map(value=>(
-          <div key={value.id} className='flex w-full flex-row items-center justify-around basis-2/4'>
+          <div key={value.id} className='flex w-full flex-row items-center border-b-2 border-gray-400 last:border-b-none justify-around basis-2/4'>
             <p className='basis-1/4 flex justify-center text-lg'>{value.amount}</p>
             <div className='w-full basis-2/4 '>
               {value.items.map((item,i)=>(

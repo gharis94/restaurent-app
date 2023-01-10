@@ -38,10 +38,13 @@ const cartSlice = createSlice({
         },
         deleteFromCart:(state,action)=>{
             delete state.cartItems[action.payload]
+        },
+        setCartToDefault:(state)=>{
+            state.cartItems=[]
         }
     }
 })
 
 export default cartSlice.reducer;
 
-export const {addItemToCart,changeCartState,deleteFromCart,decrementFromCart} = cartSlice.actions;
+export const {addItemToCart,changeCartState,deleteFromCart,decrementFromCart,setCartToDefault} = cartSlice.actions;
