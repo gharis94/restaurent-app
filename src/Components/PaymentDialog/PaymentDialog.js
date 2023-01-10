@@ -8,6 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import {addToOrders} from '../../redux/orderSlice/orderSlice'
 import { useSelector,useDispatch } from 'react-redux';
 import { totalAmount,cartItemSelector } from '../../redux/cartSlice/cartSelector';
+import { setCartToDefault } from '../../redux/cartSlice/cartSlice';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -36,6 +37,9 @@ export default function PaymentDialog({open,setOpen}) {
     dispatch(addToOrders(newData));
     // handleClose();
      navigate('/');
+     dispatch(setCartToDefault())
+
+
   }
 
   return (
