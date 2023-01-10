@@ -1,10 +1,4 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import  React from 'react';
 import {useDispatch} from 'react-redux';
 import {addItemToCart} from '../../redux/cartSlice/cartSlice'
 
@@ -14,24 +8,19 @@ export default function CardComponent({item}) {
       dispatch(addItemToCart(item));
     }
   return (
-    <Card sx={{ maxWidth: 345, margin:'10px' }}>
-      <CardMedia
-        component="img"
-        height="140"
-        image={item.imageUrl? item.imageUrl:null}
-        alt="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {item.name && item.name.toUpperCase()}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {`PKR ${item.price}/=`}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small" onClick={()=>handleAdd()}>Add</Button> 
-      </CardActions>
-    </Card>
+    <div className='flex flex-col  w-6/12 md:w-56  h-60 gap-4 bg-slate-300  drop-shadow-2xl p-2 rounded-lg'>
+
+      <div className='flex flex-col justify-center'>
+        <img className='w-full h-36 object-cover rounded-lg' src={item.imageUrl? item.imageUrl:null}/>
+      </div>
+      <div className='flex flex-row justify-between'>
+        <p className='truncate'>{item.name && item.name.toUpperCase()}</p>
+        <p className='truncate'>{` ${item.price}`}</p>
+      </div>
+      <button onClick = {() => handleAdd()}
+        className = 'w-full hover:bg-slate-600 hover:text-white rounded-lg py-1 transition duration-300' >
+        Add to Cart
+      </button>
+    </div>
   );
 }

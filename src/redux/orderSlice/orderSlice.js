@@ -12,7 +12,8 @@ export const addToOrders = createAsyncThunk('adddToOrders/order',async(dataObj)=
     let newData ={
         items:updatedData,
         status:false,
-        amount
+        amount,
+        time:Date.now()
     }
     await uploadData(newData,'orders');
 })

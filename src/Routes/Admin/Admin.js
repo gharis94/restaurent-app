@@ -1,11 +1,14 @@
 import React, { useState,useEffect } from 'react';
-import SimpleCard from '../../Components/SimpleCard/SimpleCard';
+import DashboardCard from '../../Components/DashboardCard/DashboardCard';
 import styled from 'styled-components';
 import List from '../../Components/List/List';
 import PendingOrder from '../../Components/PendingOrder/PendingOrder';
 import { useDispatch } from 'react-redux';
 import { fetchOrders} from '../../redux/orderSlice/orderSlice';
 import SaleComponent from '../../Components/SaleComponent/SaleComponent';
+import AuthComponent from '../../Components/AuthComponent/AuthComponent';
+import {signIn} from '../../utils/firebas'; 
+import AdminSettingComponent from '../../Components/AdminSettingComponent/AdminSettingComponent';
 
 const INITIAL_STATE=[
     {
@@ -26,53 +29,51 @@ const INITIAL_STATE=[
     }
 ]
 
+const initialState = {
+    email: '',
+    password: ''
+}
 const Admin = () => {
     const [count,setCount] = useState(0);
     const dispatch = useDispatch();
+    const [admin,setAdmin] = useState(initialState);
+    const {email,password}=admin;
+    const [isLogIn,setIsLogIn] = useState(false);
 
     useEffect(()=>{
         dispatch(fetchOrders());        
     },[])
+
+    const handleSubmit=async(e)=>{
+        e.preventDefault();
+        const rsp = await signIn(email,password);
+        
+        if(rsp.user.uid){
+            setIsLogIn(true)
+        }
+        return rsp;
+    }
   return (
-    <Main>
-        <h2>Admin Dashboard</h2>
-        <Container>
+    <div className='flex flex-col w-full items-center'>
+        <AuthComponent log={isLogIn} set={setAdmin} state={admin} handleSubmit={handleSubmit}/>
+        <h2 className='mt-10 text-2xl font-semibold'>Admin Dashboard</h2>
+        <div className='flex md:flex-row w-full flex-col justify-center items-center'>
             {
             INITIAL_STATE.map((state)=>(
-                <SimpleCard key={state.id} item={state} set={setCount}/>
+                <DashboardCard key={state.id} count={count} item={state} setC={setCount}/>
             ))
         }
-        </Container>
-        <ListContainer>
+        </div>
+        <div className='flex flex-col justify-center items-center w-full'>
             {
               count === 0? (<List/>): 
-              count ===1? (<h4>Admin Setting</h4>):
+              count ===1? (<AdminSettingComponent/>):
               count === 2? (<SaleComponent/>):
               count ===3? (<PendingOrder/>):null   
             }
-        </ListContainer>
-    </Main>
+        </div>
+    </div>
   )
 }
 
 export default Admin;
-
-const Main=styled.div`
-    background:aliceblue;
-    height:100vh;
-    
-`
-
-const Container = styled.div`
-    display:flex;
-    flex-direction:row;
-    flex-wrap:wrap;
-    margin-top:34px;
-    align-items:center;
-    justify-content:center;
-
-`
-const ListContainer = styled.div`
-    display:flex;
-    justify-content:center;
-`

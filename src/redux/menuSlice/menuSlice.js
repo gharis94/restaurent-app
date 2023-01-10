@@ -10,11 +10,21 @@ export const fetchMenu= createAsyncThunk('menu/fetchMenu',async()=>{
 const initialState = {
     menu: [],
     isLoading: false,
-    error: ''
+    error: '',
+    searchField:'',
+    category:'all'
 }
 const menuSlice = createSlice({
     name:'menu',
     initialState,
+    reducers:{
+        setSearchField:(state,action)=>{
+            state.searchField=action.payload
+        },
+        setCategory:(state,action)=>{
+            state.category=action.payload
+        }
+    },
     extraReducers:(builder)=>{
         builder.addCase(fetchMenu.pending,state=>{
             state.isLoading = true
@@ -31,5 +41,6 @@ const menuSlice = createSlice({
         })
     }
 });
+export const{setSearchField,setCategory} = menuSlice.actions
 
 export default menuSlice.reducer;

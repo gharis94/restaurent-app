@@ -1,7 +1,8 @@
 // Import the functions you need from the SDKs you need
 import {initializeApp} from "firebase/app";
-import { addDoc, collection, getFirestore,getDocs, doc,updateDoc} from 'firebase/firestore';
+import { addDoc, collection, getFirestore,getDocs, doc,updateDoc,serverTimestamp} from 'firebase/firestore';
 import {getStorage,ref,getDownloadURL,uploadBytesResumable,deleteObject} from 'firebase/storage'
+import {getAuth,signInWithEmailAndPassword} from 'firebase/auth';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -25,10 +26,14 @@ const db = getFirestore(app);
 //Initializing storage
 const storage = getStorage(app);
 
+//Initializing Auth sevice
+const auth = getAuth(app);
 //uploading data to firestore
 
 export const uploadData = async(data,type)=>{
+    console.log('up',data)
     const collectionRef = collection(db,type);
+
     try{
         await addDoc(collectionRef, data)
         //console.log(docRef)
@@ -87,8 +92,27 @@ export const uploadFile =async(file,setFn,progressFn)=>{
 
 export const updateData = async(data)=>{
     const docRef = doc(db,'orders',data.id);
-    await updateDoc(docRef,{
-        ...data,
-        status:'fullfilled'
-    })
+    try{
+        await updateDoc(docRef, {
+            ...data,
+            status: 'fullfilled'
+        })
+
+    }catch(error){
+        return error.message;
+    }
+    
+}
+
+//sign in 
+
+export const signIn =async(email,password)=>{
+    console.log(email)
+    try{
+        const rsp = await signInWithEmailAndPassword(auth,email,password);
+        console.log(rsp)
+        return rsp.user;
+    }catch(error){
+        return error.message;
+    }   
 }
