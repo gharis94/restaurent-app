@@ -1,14 +1,13 @@
 import React,{useState,useEffect} from 'react';
 import { Outlet } from 'react-router-dom'
-import styled from 'styled-components'
-import DropDown from '../../Components/DropDown/DropDaown';
-import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import Footer from '../../Components/Footer/Footer';
-import { useNavigate,NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import CartIcon from '../../Components/CartIcon/CartIcon';
+
 
 
 const Nav = () => {
-  const navigate=useNavigate();
+
   const [isTop,setIsTop] = useState(true);
 
   const handleScroll=()=>{
@@ -25,18 +24,21 @@ const Nav = () => {
     return window.removeEventListener('scroll',handleScroll)
 
   },[isTop])
-  const handleClick=()=>{
-    navigate('/');
-  }
   return (
     <>
-      <div className='flex flex-row justify-between mx-2'>
-        <div>
-            <NavLink to='/admin'>Admin</NavLink>
+      <div className='flex flex-row justify-between items-center mx-2'>
+        <div className='px-2'>
+            <NavLink className={({ isActive }) =>
+              isActive ? 'bg-slate-300 py-1 px-4 rounded-lg drop-shadow-lg text-gray-600' : 'px-2'
+            } to='/admin'>Admin Console</NavLink>
+            <NavLink  className={({ isActive }) =>
+              isActive ? 'bg-slate-300 py-1 px-4 rounded-lg drop-shadow-lg text-gray-600' : 'px-2'
+            } to='/'>Home</NavLink>
+            <NavLink className={({ isActive }) =>
+              isActive ? 'bg-slate-300 py-1 px-4 rounded-lg drop-shadow-lg text-gray-600' : 'px-2'
+            } to='/checkout'>Check Out</NavLink>
         </div>
-        
-        {/* <RestaurantMenuIcon onClick={()=>handleClick()} color='secondary' fontSize='large' sx={{padding:'15px', cursor:'pointer'}}/> */}
-        <DropDown/>
+        <CartIcon/>
       </div>
         <Outlet/>
         <Footer/>
@@ -46,9 +48,3 @@ const Nav = () => {
 
 export default Nav;
 
-const NavTop = styled.div`
-  display:flex;
-  justify-content:space-between;
-  align-items:'center';
-  
-`

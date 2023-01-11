@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React,{useState} from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -15,12 +15,15 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { useNavigate } from 'react-router-dom';
+import PaymentForm from '../../Components/PaymentForm/PaymentForm';
+
 
 export default function PaymentDialog({open,setOpen}) {
   const amount = useSelector(totalAmount);
   const data =useSelector(cartItemSelector);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [controle,setControle] =useState('cash')
 //   const handleClickOpen = () => {
 //     setOpen(true);
 //   };
@@ -29,7 +32,7 @@ export default function PaymentDialog({open,setOpen}) {
     setOpen(false);
   };
   const handleOrder = ()=>{
-    
+    if(controle !== 'cash') return;
     let newData = {
         data,
         amount
@@ -53,7 +56,15 @@ export default function PaymentDialog({open,setOpen}) {
         <DialogTitle id="alert-dialog-title">
           {"Mode of payment"}
         </DialogTitle>
-        <DialogContent>
+        {controle ==='card'?(
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+            Please Insert Card Details.
+          </DialogContentText>
+            <PaymentForm/>  
+          </DialogContent>
+        ):(
+          <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Please chose mode of payment.
           </DialogContentText>
@@ -63,12 +74,14 @@ export default function PaymentDialog({open,setOpen}) {
                     defaultValue="card"
                     name="radio-buttons-group"
                 >
-                    <FormControlLabel value="card" control={<Radio />} label="Card" />
-                    <FormControlLabel value="cash" control={<Radio />} label="Cash" />
+                    <FormControlLabel value="card" control={<Radio />} label="Card" onChange={()=>setControle('card')} />
+                    <FormControlLabel value="cash" control={<Radio />} label="Cash" onChange={()=>setControle('cash')} />
                     
                 </RadioGroup>
             </FormControl>
         </DialogContent>
+        )}
+        
         <DialogActions>
           <Button onClick={()=>handleOrder()} autoFocus>
             Place Order
