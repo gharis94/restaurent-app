@@ -13,7 +13,7 @@ const CheckOut = () => {
   return (
     <div className='flex flex-col mx-auto md:w-8/12 h-screen items-center'>
       <h2 className='text-2xl font-semibold mb-5'>Check Out</h2>
-        <div div className = 'flex w-full bg-red-300 rounded-t-lg text-lg font-semibold' >
+        <div className = 'flex w-full bg-red-300 rounded-t-lg text-lg font-semibold' >
           <p className='basis-2/4 flex justify-center '>Description</p>
           <p className='basis-1/4 flex justify-center '>Qty</p>
           <div className='basis-1/4 flex justify-around '>
@@ -36,6 +36,7 @@ const CheckOut = () => {
       </div>
       <button className='px-10 mb-10 hover:bg-red-300 hover:text-white transition duration-500 rounded-lg bg-slate-400' onClick={()=>setIsOpen(!isOpen)}>Pay Now</button>
       <PaymentDialog open={isOpen} setOpen={setIsOpen}/>
+      
     </div>
   )
 }
