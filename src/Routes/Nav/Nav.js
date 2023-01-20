@@ -25,8 +25,8 @@ const Nav = () => {
 
   },[isTop])
   return (
-    <>
-      <div className='flex flex-row justify-between items-center mx-2'>
+    <div className='relative'>
+      <div  className = 'flex flex-row justify-between items-center  h-12 bg-white drop-shadow-xl  ' >
         <div className='px-2'>
             <NavLink className={({ isActive }) =>
               isActive ? 'bg-slate-300 py-1 px-4 rounded-lg drop-shadow-lg text-gray-600' : 'px-2'
@@ -40,9 +40,12 @@ const Nav = () => {
         </div>
         <CartIcon/>
       </div>
+      
         <Outlet/>
         <Footer/>
-    </>
+      
+        
+    </div>
   )
 }
 

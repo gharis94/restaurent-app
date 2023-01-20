@@ -5,7 +5,7 @@ import CourseSelector from '../../Components/CourseSelector/CourseSelector'
 
 const Home = () => {
   return (
-    <div className='flex flex-col justify-center items-center'>
+    <div className='flex flex-col items-center justify-center mt-10'>
       <h2 className='text-2xl font-semibold'>Menu</h2>
       <CourseSelector/>
       <MenuComponent/>      
@@ -15,7 +15,3 @@ const Home = () => {
 
 export default Home;
 
-const H2 = styled.h2`
-font-weight: bold;
-font-size: 2rem;
-`
