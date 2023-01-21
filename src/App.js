@@ -15,7 +15,7 @@ function App() {
 
   }, [])
   return (
-    <div className="h-screen">
+    <div className="w-full bg-slate-200">
       <Routes>
         <Route path='/' element={<Nav/>}>
           <Route index element={<Home/>}/>

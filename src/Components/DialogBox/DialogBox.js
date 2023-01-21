@@ -15,7 +15,7 @@ import { Input } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import {uploadFile} from '../../utils/firebas'
 import { useDispatch } from 'react-redux';
-import { uploadMenu } from '../../redux/menuSlice/uploadMenuSlice';
+import { uploadMenu } from '../../redux/menuSlice/menuSlice';
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),

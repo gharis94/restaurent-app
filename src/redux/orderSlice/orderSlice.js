@@ -24,7 +24,7 @@ export const fetchOrders = createAsyncThunk('fetchOrders/order',async()=>{
 })
 
 export const updateOrder = createAsyncThunk('updateOrder.order',async(dataObj)=>{
-    const rsp = await updateData(dataObj);
+    const rsp = await updateData('orders',dataObj);
     return rsp;
 })
 
@@ -64,7 +64,8 @@ const orderSlice = createSlice({
         })
         builder.addCase(updateOrder.fulfilled,(state,action)=>{
             state.status = 'data updated';
-            state.orders=action.payload;
+            console.log(action.meta.arg)
+            state.orders= state.orders.map((item)=>item.id===action.meta.arg.id?(action.meta.arg):item)
         })
         builder.addCase(updateOrder.rejected,(state,action)=>{
             state.status = 'data updating failed';

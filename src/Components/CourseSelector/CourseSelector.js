@@ -15,7 +15,7 @@ const CourseSelector = () => {
     }
   return (
     <div className='w-full flex  flex-row justify-center mt-4 px-2'>
-        <div className = 'flex flex-row flex-wrap justify-center w-7/12 ' >
+        <div className = 'flex flex-row flex-wrap justify-center ' >
         {
             items.map((item,i)=>(
                 <div key={i} className={`rounded-lg m-2 ${category===item?'bg-slate-500':'bg-slate-400'} px-3 cursor-pointer`} onClick={()=>handleClick(item)}>
@@ -23,7 +23,7 @@ const CourseSelector = () => {
                 </div>
             ))
         }
-    </div>
+        </div>
     </div>
     
   )
