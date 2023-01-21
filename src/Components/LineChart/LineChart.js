@@ -8,10 +8,11 @@ import { ResponsiveLine } from '@nivo/line'
 // website examples showcase many properties,
 // you'll often use just a few of them.
 const LineChart = ({ data  }) =>{ 
+
     const updatedData=[{
         id:'total sale',
         color: "hsl(64, 70%, 50%)",
-        data
+        data:[...data]
     }]
     return(
     <ResponsiveLine

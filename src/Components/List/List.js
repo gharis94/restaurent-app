@@ -8,7 +8,7 @@ import DialogBox from '../DialogBox/DialogBox'
 export default function InteractiveList() {
  
   const menu = useSelector(getMenu);
-  console.log(menu)
+ // console.log(menu)
   return (
     <div  className = 'w-full flex flex-col justify-center items-center h-full mb-5' >
       <p className='text-2xl font-semibold'>Items on menu</p>
