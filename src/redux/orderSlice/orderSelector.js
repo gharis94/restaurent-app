@@ -1,8 +1,16 @@
- 
+
+
 export const orderSelector = state=>{
         console.log('orderSelector')
     return(
     state.order.orders)};
+
+export const orderPending=state=>{
+    console.log(orderPending)
+    return(
+        state.order.orders.filter(item=>item.status===false)
+    )
+}
 
 export const orderSaleSelector = state =>{ 
     console.log('orderSaleSelector')

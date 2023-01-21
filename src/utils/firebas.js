@@ -95,7 +95,6 @@ export const updateData = async(type,data)=>{
     try{
         await updateDoc(docRef, {
             ...data,
-            status: 'fullfilled'
         })
 
     }catch(error){

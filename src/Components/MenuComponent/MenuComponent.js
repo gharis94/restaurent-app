@@ -11,20 +11,18 @@ const MenuComponent = () => {
   
   return (
     <div className=''>
-        <div className='grid grid-cols-1 my-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 space-y-2  gap-4  mx-auto '>
+        <div className='grid grid-cols-1 my-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 space-y-2  gap-4  mx-auto  min-h-screen'>
         {
             menu.length>0 && menu.filter(item=>{
-                if(category === 'all'){
-                    //setIsEmpty(false)
+                if(category === 'all' && item.isDisplay===true){
                     return item
-                }else if(item.category === category){
-                    //setIsEmpty(false)
+                }else if(item.category === category && item.isDisplay===true){
+                    
                     return true
                 }else{
                     return false
                 }
             }).map(item=>{
-                //setIsEmpty(false)
                 return(
                 <CardComponent key={item.id} item={item}/>
             )})
@@ -33,9 +31,9 @@ const MenuComponent = () => {
             ) */
         }
     </div>
-        <div className='bg-blue-500 h-96'>
+        {/* <div className='bg-blue-500 h-96'>
                     <p>Sorry No item available</p>
-        </div>
+        </div> */}
     </div>
         
   )
