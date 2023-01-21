@@ -2,13 +2,14 @@ import  React from 'react';
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {useSelector,useDispatch} from 'react-redux';
-import {orderSelector} from '../../redux/orderSlice/orderSelector';
+import {orderSelector,orderPending} from '../../redux/orderSlice/orderSelector';
 
 import {updateOrder} from '../../redux/orderSlice/orderSlice';
 
 export default function CheckboxList() {
   const dispatch = useDispatch();
-  const orders = useSelector(orderSelector);
+  //const orders = useSelector(orderSelector);
+  const orders = useSelector(orderPending);
     
     const handleupdate =(data)=>{
       const newData={
@@ -30,7 +31,7 @@ export default function CheckboxList() {
       </div>
 
       <div className='md:w-8/12 w-full flex flex-col bg-slate-300 justify-center items-center mb-6 border-b-2  last:rounded-b-lg '>
-        {orders?.length>0 && orders?.filter(item=>item.status===false).map(value=>(
+        {orders?.length>0 && orders?.map(value=>(
           <div key={value.id} className='flex w-full flex-row items-center border-b-2 border-gray-400 last:border-b-none justify-around basis-2/4'>
             <p className='basis-1/4 flex justify-center text-lg'>{value.amount}</p>
             <div className='w-full basis-2/4 '>
