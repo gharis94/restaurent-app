@@ -89,7 +89,7 @@ export default function CheckOutCard({item}) {
     //     }
         
     // </Box>
-    <div className='flex  '>
+    <div className='flex  py-4'>
         <div className='basis-2/4 flex justify-around items-center'>
             <img className='w-14 h-14 rounded-full object-cover' src={imageUrl}/>
             <p className='text-lg font-semibold'>{name}</p>

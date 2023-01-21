@@ -24,7 +24,7 @@ export const fetchOrders = createAsyncThunk('fetchOrders/order',async()=>{
 })
 
 export const updateOrder = createAsyncThunk('updateOrder.order',async(dataObj)=>{
-    const rsp = await updateData(dataObj);
+    const rsp = await updateData('orders',dataObj);
     return rsp;
 })
 

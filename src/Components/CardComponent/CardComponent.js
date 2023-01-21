@@ -10,7 +10,7 @@ export default function CardComponent({item}) {
       dispatch(addItemToCart(item));
     }
   return (
-    <div  className = 'flex flex-col  md:w-56  w-[300px]  h-[350px] gap-4 bg-slate-300  drop-shadow-2xl p-2 rounded-lg ' >
+    <div  className = 'flex flex-col  md:w-56  w-[300px]  h-[350px] gap-4 bg-slate-100  drop-shadow-2xl p-2 rounded-lg ' >
 
       <div className='flex flex-col justify-center'>
         <img className='w-[300px]  h-[230px] object-cover rounded-lg' loading='lazy' src={item.imageUrl? item.imageUrl:null}/>

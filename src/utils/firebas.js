@@ -90,8 +90,8 @@ export const uploadFile =async(file,setFn,progressFn)=>{
 
 // updating firestore data 
 
-export const updateData = async(data)=>{
-    const docRef = doc(db,'orders',data.id);
+export const updateData = async(type,data)=>{
+    const docRef = doc(db,type,data.id);
     try{
         await updateDoc(docRef, {
             ...data,
