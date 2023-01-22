@@ -1,6 +1,5 @@
 import React from 'react'
 import MenuComponent from '../../Components/MenuComponent/MenuComponent'
-import styled from 'styled-components'
 import CourseSelector from '../../Components/CourseSelector/CourseSelector'
 
 const Home = () => {
