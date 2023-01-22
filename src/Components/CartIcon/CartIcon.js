@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-//import styled from 'styled-components';
+import React from 'react'
 import {ReactComponent as Bag} from '../../asset/shopping-bag.svg';
 import {useSelector} from 'react-redux'
 import {totalCount} from '../../redux/cartSlice/cartSelector'

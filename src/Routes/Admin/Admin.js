@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from 'react';
 import DashboardCard from '../../Components/DashboardCard/DashboardCard';
-import styled from 'styled-components';
 import List from '../../Components/List/List';
 import PendingOrder from '../../Components/PendingOrder/PendingOrder';
 import { useDispatch } from 'react-redux';
