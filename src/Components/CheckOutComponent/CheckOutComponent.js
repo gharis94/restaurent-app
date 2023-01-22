@@ -71,25 +71,7 @@ export default function CheckOutCard({item}) {
     }
 
     return (
-    // <Box sx={{ minWidth: 700, maxWidth:520 }}>
-    //     {
-    //        cartItems.length>0 ? 
-    //        (<>
-    //             {
-    //                 cartItems.map(item=>(
-    //                     <Card key={item.id}  variant="outlined">{<CardI item={item}/>}
-    //                     </Card>))
-    //             }
-                
-    //             <Button size="small" onClick={()=>setIsOpen(!isOpen)}>Pay Now</Button>
-    //             <PaymentDialog open={isOpen} setOpen={setIsOpen}/>       
-    //        </>):
-    //        <h4>Empty Bucket</h4>
-            
-    //     }
-        
-    // </Box>
-    <div className='flex  py-4'>
+    <div className='flex  py-4 border-b-2'>
         <div className='basis-2/4 flex justify-around items-center'>
             <img className='w-14 h-14 rounded-full object-cover' src={imageUrl}/>
             <p className='text-lg font-semibold'>{name}</p>
