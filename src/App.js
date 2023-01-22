@@ -20,6 +20,7 @@ function App() {
         <Route path='/' element={<Nav/>}>
           <Route index element={<Home/>}/>
           <Route path='checkout' element={<CheckOut/>}/>
+          <Route path='qr' element={<QrCode/>}/>
         </Route>
         <Route path='/admin' element={<Admin/>}/>
       </Routes>
