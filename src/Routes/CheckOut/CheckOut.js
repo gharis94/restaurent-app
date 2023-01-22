@@ -11,7 +11,7 @@ const CheckOut = () => {
   const items = useSelector(cartItemSelector)
  
   return (
-    <div className='flex flex-col mx-auto md:w-8/12  items-center mt-10 min-h-screen'>
+    <div className='flex flex-col mx-auto md:w-8/12  items-center pt-20 min-h-screen'>
       <h2 className='text-2xl font-semibold mb-5'>Check Out</h2>
         <div className = 'flex w-full bg-slate-700 rounded-t-lg text-lg font-semibold text-gray-300' >
           <p className='basis-2/4 flex justify-center '>Description</p>
@@ -21,7 +21,7 @@ const CheckOut = () => {
             <p>Sub-Total</p>
           </div>
         </div>
-        <div className='w-full bg-slate-300 rounded-b-lg space-y-1'>
+        <div className='w-full bg-slate-400 rounded-b-lg '>
           { 
            items.length>0? items.map(item=>(
             <CheckOutCard  key={item.id}  item={item}/>

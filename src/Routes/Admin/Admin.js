@@ -45,6 +45,9 @@ const Admin = () => {
     useEffect(()=>{
         dispatch(fetchOrders());        
     },[])
+    useEffect(()=>{
+        alert('This is a demo App. Admin Console is divided into four section (1)Menu -> to manage/add any item  (2) Admin Setting -> Under developement (3) Sales -> Shows the analytics (4) Pending Orders -> Shows the order which are in preparation',)
+    },[])
 
     const handleSubmit=async(e)=>{
         e.preventDefault();

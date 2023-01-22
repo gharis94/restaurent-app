@@ -1,12 +1,15 @@
 import React from 'react'
-import styled from 'styled-components'
+//import styled from 'styled-components'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
+import { useNavigate } from 'react-router-dom';
+
 const Footer = () => {
+  const navigateTo = useNavigate();
   return (
     <div className='bg-slate-700  grid grid-cols-1 sm:grid-cols-3'>
       <div className='  flex flex-col  justify-center items-start ml-5'>
@@ -22,7 +25,9 @@ const Footer = () => {
             <TwitterIcon/>
             <p className='pl-2 ml-2'>www.twitter.com</p>
           </div>
-          
+          <div  className = 'flex items-center my-2 text-gray-300' >
+              <p onClick={()=>navigateTo('/admin')} className='pl-10 underline text-sm'>Admin Console?</p>
+          </div>
           
       </div>
       <div className = 'flex flex-col  justify-center items-start ml-5' >

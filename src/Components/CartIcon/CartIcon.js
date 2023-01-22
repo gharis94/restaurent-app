@@ -10,10 +10,10 @@ const CartIcon = () => {
     const count = useSelector(totalCount);
     
   return (
-    <Container onClick={()=>navigate('/checkout')}>
-        <ShoppingIcon/>
-        <Count>{count}</Count>
-    </Container>
+    <div className='relative mr-6 flex justify-center  items-center cursor-pointer' onClick={()=>navigate('/checkout')}>
+        <Bag className='h-6 w-6'/>
+        <span className='absolute text-sm top-1'>{count}</span>
+    </div>
   )
 }
 
@@ -22,7 +22,3 @@ export default CartIcon
 
 //styles below
 
-const ShoppingIcon = styled(Bag)`
-  width:24px;
-  height:24px;
-`
