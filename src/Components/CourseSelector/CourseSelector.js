@@ -18,7 +18,7 @@ const CourseSelector = () => {
         <div className = 'flex flex-row flex-wrap justify-center ' >
         {
             items.map((item,i)=>(
-                <div key={i} className={`rounded-lg m-2 ${category===item?'bg-slate-500':'bg-slate-400'} px-3 cursor-pointer`} onClick={()=>handleClick(item)}>
+                <div key={i} className={`rounded-lg m-2 ${category===item?'bg-yellow-500':'bg-slate-400'} px-3 cursor-pointer`} onClick={()=>handleClick(item)}>
                     <p className='text-white'>{item.toUpperCase()}</p>
                 </div>
             ))

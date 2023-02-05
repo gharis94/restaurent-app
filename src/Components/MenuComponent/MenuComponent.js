@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React from 'react';
 import CardComponent from '../CardComponent/CardComponent';
 
 import { useSelector } from 'react-redux';
@@ -7,11 +7,11 @@ import { getCategory, getMenu } from '../../redux/menuSlice/menuSelector';
 const MenuComponent = () => {
     const menu = useSelector(getMenu);  
     const category = useSelector(getCategory);
-    const [isEmpty,setIsEmpty] = useState(true)
+   // const [isEmpty,setIsEmpty] = useState(true)
   
   return (
     <div className=''>
-        <div className='grid grid-cols-1 my-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  space-y-2  gap-4  mx-auto  min-h-screen'>
+        <div className='grid grid-cols-1 my-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  space-y-2 sm:space-y-0 gap-4  mx-auto  min-h-screen '>
         {
             menu.length>0 && menu.filter(item=>{
                 if(category === 'all' && item.isDisplay===true){

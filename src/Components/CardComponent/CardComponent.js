@@ -10,17 +10,16 @@ export default function CardComponent({item}) {
       dispatch(addItemToCart(item));
     }
   return (
-    <div  className = 'flex flex-col  md:w-56  w-[300px]  h-[350px] gap-4 bg-slate-100  drop-shadow-2xl p-2 rounded-lg ' >
+    <div  className = 'flex flex-col  md:w-56  w-[300px]  h-[350px] gap-4 bg-slate-100  drop-shadow-2xl  ' >
 
-      <div className='flex flex-col justify-center'>
-        <img className='w-[300px]  h-[230px] object-cover rounded-lg' loading='lazy' src={item.imageUrl? item.imageUrl:null}/>
-      </div>
-      <div className='flex flex-row justify-between text-gray-700'>
-        <p className='truncate'>{item.name && item.name.toUpperCase()}</p>
-        <p className='truncate'>{`PKR ${item.price}`}</p>
+        <img className='w-[300px]  h-[230px] object-cover ' loading='lazy' alt='dish' src={item.imageUrl? item.imageUrl:null}/>
+      
+      <div className='flex flex-row justify-between text-gray-700 p-2'>
+        <p className='truncate font-semibold'>{item.name && item.name.toUpperCase()}</p>
+        <p className='truncate font-semibold'>{`$${item.price}`}</p>
       </div>
       <button onClick = {() => handleAdd()}
-        className = 'w-full bg-slate-200 hover:bg-slate-600 hover:text-white rounded-lg py-1 transition duration-300' >
+        className = ' bg-slate-200 hover:bg-yellow-500 hover:text-gray-500 rounded-lg py-1 mx-2 transition duration-300' >
         Add to Cart
       </button>
     </div>
